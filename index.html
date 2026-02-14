@@ -33,29 +33,49 @@
   <!-- SCENE 3 (Rosa line-art animada) -->
   <section class="scene scene3" id="scene3">
     <div class="topText">
-      <div class="topLine">Feliz San Valentín</div>
-      <div class="topLine2">Una rosa hecha con líneas y amor 🌹</div>
+      <div class="topLine">Feliz día</div>
+      <div class="topLine2">La quiero amorcito mio 🌹</div>
     </div>
 
     <div class="roseWrap">
       <canvas id="lineRose"></canvas>
 
-      <!-- Tarjetita / nota -->
-      <div class="noteCard" aria-label="Nota">
-        <div class="noteTitle">Para mi Laura ❤️</div>
-        <p>
-          Es solo una flor, pero en este día no quería quedarme sin darle algo :(
-          <br><br>
-          Sabe que la quiero mucho, que me encanta y quiero estar siempre con usted.
-          <span class="noteStrong">"LA QUIERO"</span> mucho.
-          <br><br>
-          Amorcito de mi vida.
-        </p>
-        <div class="noteFooter">Mi Laura, mi preciosa, la quiero. Lo hice con mucho amor, espero le guste.</div>
+      <!-- Botón para mostrar la nota (ideal en móvil) -->
+      <button class="noteToggle" id="btnNote" aria-label="Ver mensaje">
+        💌 Ver mensaje
+      </button>
 
-        <button class="touchBtn" id="btnTouch">Tócame 💗</button>
+      <!-- Tarjetita / nota (inicia oculta) -->
+      <div class="noteCard hidden" id="noteCard" aria-label="Nota">
+        <div class="notePanel">
+      
+          <div class="noteHeader">
+            <div class="noteTitle">Para mi Lau ❤️</div>
+          </div>
+      
+          <div class="noteBody">
+            <p>
+              Es solo una flor, pero en este día no quería quedarme sin darle nada :(
+              <br><br>
+              Sabe que la quiero mucho, que me encanta y quiero estar siempre con usted.
+              <span class="noteStrong">"LA QUIERO"</span> mucho.
+              <br><br>
+              Amorcito de mi vida.
+            </p>
+      
+            <div class="noteFooter">
+              Mi Lau, mi preciosa, la quiero. Lo hice con mucho amor, espero le guste.
+            </div>
+          </div>
+      
+          <div class="noteActions">
+            <button class="touchBtn" id="btnTouch">Tócame 💗</button>
+            <button class="closeNote" id="btnCloseNote">Cerrar ✨</button>
+          </div>
+      
+        </div>
       </div>
-    </div>
+      
 
     <div class="bottomControls">
       <button class="pill" id="btnRestart">Volver al inicio</button>
