@@ -155,52 +155,107 @@
     border-radius: 18px;
   }
   
-  /* Tarjetita */
+  /* ------------------------------
+     NUEVO: Botón para ver la nota
+  --------------------------------*/
+  .noteToggle{
+    position:absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 7;
+    cursor:pointer;
+    border:none;
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-weight: 900;
+    color:#fff;
+    background: rgba(255,77,179,0.25);
+    border: 1px solid rgba(255,77,179,0.55);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* ------------------------------
+     NUEVO: Nota como modal centrado
+  --------------------------------*/
   .noteCard{
-    position: absolute;
-    left: 50%;
-    bottom: 14px;
-    transform: translateX(-50%);
-    width: min(520px, 92%);
-    padding: 14px 14px 12px;
+    position:absolute;
+    inset: 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 14px;
+    z-index: 9;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(3px);
+  }
+  
+  /* Ocultar */
+  .hidden{
+    display:none !important;
+  }
+  
+  /* Caja interna de la nota */
+  .noteCard .noteTitle,
+  .noteCard p,
+  .noteCard .noteFooter,
+  .noteCard .touchBtn,
+  .noteCard .closeNote{
+    width: 100%;
+  }
+  
+  .noteCard > *{
+    /* NO afecta porque noteCard ahora es contenedor modal */
+  }
+  
+  /* Crearemos un “panel” dentro usando ::before? Mejor: usa el mismo noteCard como caja */
+  #noteCard{
+    /* (se mantiene por ID si quieres afinar después) */
+  }
+  
+  .noteCard{
+    /* panel real */
+  }
+  .noteCard{
+    /* Convertimos la tarjeta en panel */
     border-radius: 18px;
     background: rgba(255,255,255,0.10);
     border: 1px solid rgba(255,77,179,0.50);
-    backdrop-filter: blur(10px);
     box-shadow: 0 18px 40px rgba(0,0,0,0.35);
     color: rgba(255,255,255,0.92);
+    max-width: 520px;
+    margin: auto;
+    padding: 16px 16px 14px;
+    animation: noteIn .35s ease forwards;
   }
   
-  
+  /* Título */
   .noteTitle{
     font-weight: 900;
     color: #ffd1e7;
     letter-spacing: .3px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     text-align: center;
   }
   
+  /* Texto */
   .noteCard p{
     margin: 0;
     font-size: 14.5px;
     line-height: 1.35;
     text-align: center;
   }
-  .noteCard{
-    animation: noteIn .8s ease forwards;
-  }
   
   @keyframes noteIn{
     from{
       opacity: 0;
-      transform: translateY(-8px);
+      transform: translateY(10px) scale(.98);
     }
     to{
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
   }
-  
   
   .noteStrong{
     font-weight: 900;
@@ -214,6 +269,7 @@
     text-align: center;
   }
   
+  /* Botón Tócame */
   .touchBtn{
     margin-top: 12px;
     width: 100%;
@@ -225,6 +281,20 @@
     color:#fff;
     background: rgba(255,77,179,0.30);
     border: 1px solid rgba(255,77,179,0.65);
+  }
+  
+  /* Botón Cerrar */
+  .closeNote{
+    margin-top: 10px;
+    width: 100%;
+    cursor:pointer;
+    border:none;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-weight: 900;
+    color:#fff;
+    background: rgba(255,77,179,0.18);
+    border: 1px solid rgba(255,77,179,0.50);
   }
   
   /* Botón abajo */
@@ -305,5 +375,27 @@
     right: 14px;
     bottom: 14px;
     opacity: .0;
+  }
+  
+  /* ---------- Ajustes para teléfono ---------- */
+  @media (max-width: 480px){
+    .topLine{ font-size: 24px; }
+    .topLine2{ font-size: 16px; }
+    canvas#lineRose{ height: min(520px, 58vh); }
+  
+    .noteToggle{
+      right: 10px;
+      bottom: 10px;
+      padding: 10px 12px;
+    }
+  
+    .noteCard{
+      max-width: 94vw;
+      padding: 14px;
+    }
+  
+    .noteCard p{
+      font-size: 14px;
+    }
   }
   
