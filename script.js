@@ -15,6 +15,11 @@ function showScene(n){
   if(n===1) s1.classList.add("active");
   if(n===3) s3.classList.add("active");
 
+  // ✅ al cambiar de escena, cierra nota y overlay para que no quede encima
+  if (n !== 3) {
+    closeNote(true);
+  }
+
   requestAnimationFrame(() => {
     if (n === 3) resizeLine();
   });
@@ -115,6 +120,38 @@ function lineLoop(t){
 }
 requestAnimationFrame(lineLoop);
 
+// ---------- Nota: abrir/cerrar (para móvil) ----------
+const btnNote = document.getElementById("btnNote");
+const noteCard = document.getElementById("noteCard");
+const btnCloseNote = document.getElementById("btnCloseNote");
+
+function openNote(){
+  if (!noteCard) return;
+  noteCard.classList.remove("hidden");
+}
+
+function closeNote(forceHideOverlay = false){
+  if (noteCard) noteCard.classList.add("hidden");
+  if (forceHideOverlay && overlay) overlay.classList.remove("on");
+}
+
+// Abrir
+if (btnNote) {
+  btnNote.addEventListener("click", () => openNote());
+}
+// Cerrar
+if (btnCloseNote) {
+  btnCloseNote.addEventListener("click", () => closeNote(false));
+}
+
+// Cerrar tocando fuera de la tarjeta (opcional, cómodo en móvil)
+if (noteCard) {
+  noteCard.addEventListener("click", (e) => {
+    // Si toca el fondo de la tarjeta (no un botón o texto), cierra
+    if (e.target === noteCard) closeNote(false);
+  });
+}
+
 // ---------- Overlay: palabras + corazones ----------
 const overlay = document.getElementById("overlay");
 const btnTouch = document.getElementById("btnTouch");
@@ -128,11 +165,15 @@ const words = [
 
 let burstTimer = null;
 
-btnTouch.addEventListener("click", () => {
-  startBurst(2600); // duración del show (ms)
-});
+if (btnTouch) {
+  btnTouch.addEventListener("click", () => {
+    startBurst(2600); // duración del show (ms)
+  });
+}
 
 function startBurst(durationMs){
+  if (!overlay) return;
+
   overlay.classList.add("on");
 
   // Si ya estaba corriendo, reinicia
@@ -154,7 +195,7 @@ function startBurst(durationMs){
 
 function spawnBatch(){
   // Palabras por toda la pantalla
-  const countWords = 12; // sube/baja para más/menos
+  const countWords = 12;
   for(let i=0;i<countWords;i++){
     spawnWord();
   }
@@ -183,7 +224,6 @@ function spawnWord(){
 
   // Color con variación suave
   const alpha = 0.55 + Math.random()*0.40; // 0.55..0.95
-  // tonos rosados/blancos
   const variant = Math.random();
   if (variant < 0.35) el.style.color = `rgba(255,209,231,${alpha})`;
   else if (variant < 0.70) el.style.color = `rgba(255,77,179,${alpha})`;
@@ -202,7 +242,7 @@ function spawnHeart(){
   el.className = "burstHeart";
 
   const x = Math.random()*window.innerWidth;
-  const y = window.innerHeight * (0.45 + Math.random()*0.55); // más hacia abajo para “subir”
+  const y = window.innerHeight * (0.45 + Math.random()*0.55);
 
   el.style.left = `${x}px`;
   el.style.top = `${y}px`;
