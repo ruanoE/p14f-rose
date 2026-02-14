@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Para ti ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCENE 1 (Tarjeta / botón) -->
+  <section class="scene scene1 active" id="scene1">
+    <div class="card">
+      <div class="card-inner">
+        <div class="frame">
+          <div class="preview">
+            <div class="couple">
+              <div class="p1"></div>
+              <div class="p2"></div>
+              <div class="heart h1"></div>
+              <div class="heart h2"></div>
+            </div>
+          </div>
+
+          <div class="title-script">¡Quédate conmigo!</div>
+
+          <button class="glow-btn" id="btnStart">Toca Aquí</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 3 (Rosa line-art animada) -->
+  <section class="scene scene3" id="scene3">
+    <div class="topText">
+      <div class="topLine">Feliz San Valentín</div>
+      <div class="topLine2">Una rosa hecha con líneas y amor 🌹</div>
+    </div>
+
+    <div class="roseWrap">
+      <canvas id="lineRose"></canvas>
+
+      <!-- Tarjetita / nota -->
+      <div class="noteCard" aria-label="Nota">
+        <div class="noteTitle">Para mi Laura ❤️</div>
+        <p>
+          Es solo una flor, pero en este día no quería quedarme sin darle algo :(
+          <br><br>
+          Sabe que la quiero mucho, que me encanta y quiero estar siempre con usted.
+          <span class="noteStrong">"LA QUIERO"</span> mucho.
+          <br><br>
+          Amorcito de mi vida.
+        </p>
+        <div class="noteFooter">Mi Laura, mi preciosa, la quiero. Lo hice con mucho amor, espero le guste.</div>
+
+        <button class="touchBtn" id="btnTouch">Tócame 💗</button>
+      </div>
+    </div>
+
+    <div class="bottomControls">
+      <button class="pill" id="btnRestart">Volver al inicio</button>
+    </div>
+
+    <!-- Overlay de palabras + corazones -->
+    <div class="overlay" id="overlay">
+      <div class="overlayHint" id="overlayHint">💞</div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
